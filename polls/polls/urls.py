@@ -1,7 +1,11 @@
-from django.urls import path, include
-from django.contrib import admin
+from django.urls import path
+from . import views
+
+app_name = 'polls'
 
 urlpatterns = [
-    path('polls/', include('poll.urls')),
-    path('admin/', admin.site.urls)
+   path('', views.index, name='index'),
+   path('<int:question_id>/', views.detail, name='detail'),
+   path('<int:question_id>/result/', views.results, name='result'),
+   path('<int:question_id>/vote/', views.vote, name='vote'),
 ]
